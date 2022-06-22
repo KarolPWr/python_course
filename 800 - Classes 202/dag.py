@@ -14,9 +14,21 @@ class Dag:
     def __rshift__(self, node):
         """There is direct edge from self._recently_added_node to node
         """
+        self._allowed_pairs.add((self._recently_added_node, node))
+        self._recently_added_node = node
+        return self  # we have to return DAG instance
 
-    def is_direct_path(self, deriving, to):
-        return (deriving, to) in self._allowed_pairs
+    def is_direct_path(self, *paths):
+        """reimplement `is_direct_path` so it will be able to detect path of unlimited length"""
+        # return (deriving, to) in self._allowed_pairs
+        pairs = list(self.split_path_to_pairs(paths))
+        for pair in pairs:
+            if pair not in self._allowed_pairs: # not working?
+                return False
+
+    def split_path_to_pairs(self, *paths):
+        for i in range(0, len(paths), 2):  #create pairs
+            yield paths[i:i+2]
 
     def is_start_node(self, node):
         return self.is_direct_path(None, node)

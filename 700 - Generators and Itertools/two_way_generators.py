@@ -45,6 +45,13 @@ def run_input_gen():
 def exercise_gen(ret_val, times):
     """Return `ret_value` `times` times.
     If generator will receive some value from outside, update `ret_value`"""
+    for _ in range(times):
+        try:
+            x = yield ret_val
+            if x is not None:
+                ret_val = x
+        except Exception:
+            pass
 
 
 def exercise1():

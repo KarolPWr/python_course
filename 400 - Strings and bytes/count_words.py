@@ -8,7 +8,12 @@ def remove_non_alpha_characters(text):
 
 
 def count_words_from_file(filename):
-    return dict()
+    occurences = defaultdict(int)
+    with open(filename, 'r') as f:
+        words = remove_non_alpha_characters(f.read()).lower().split()
+        for word in words:
+            occurences[word] += 1
+    return occurences
 
 
 if __name__ == '__main__':

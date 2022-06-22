@@ -1,24 +1,44 @@
 import requests
+import curl
 
 
 def get_posts():
-    pass
+    response  = requests.get(f"https://jsonplaceholder.typicode.com/posts")
+    return response.json()
 
 
 def get_post(post_id: int):
-    pass
+    r = requests.get(f"https://jsonplaceholder.typicode.com/posts/{post_id}")
+    print(r.json())
+    return r.json()
 
 
 def publish_post(title, body, user_id):
-    pass
+    data = {
+        "title": f"{title}",
+        "body": f"{body}",
+        "userId": f"{user_id}",
+    }
+    response3 = requests.post(
+        "https://jsonplaceholder.typicode.com/posts",
+        json=data
+    )
+    print(curl.parse(response3))
 
 
 def delete_post(post_id):
-    pass
+    requests.delete(f"https://jsonplaceholder.typicode.com/posts/{post_id}")
 
 
 def get_user_posts(user_id: int):
-    pass
+    # response = requests.get(f"https://jsonplaceholder.typicode.com/posts/{user_id}/posts")
+    # return response.json()
+    response = requests.get(
+        f"https://jsonplaceholder.typicode.com/users/{user_id}/posts",
+    )
+    assert response.status_code == 200
+    response_object = response.json()
+    return response_object
 
 
 if __name__ == "__main__":
@@ -35,4 +55,3 @@ if __name__ == "__main__":
                 'nostrum rerum est autem sunt rem eveniet architecto'
     }
     publish_post("title", "Lore impsum", 1)
-

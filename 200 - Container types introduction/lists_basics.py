@@ -9,14 +9,28 @@ def print_elements(elements):
 
 def sum_elements(elements):
     """Return 0 if list is empty"""
+    sum=0
+    for element in elements:
+        sum = sum+element
+    return sum
 
 
 def min_element(elements):
     """Return None if list is empty"""
+    if not elements:
+        return None
+    min = elements[0]
+    for element in elements:
+        if element < min:
+            min = element
+    return min
+
 
 
 def avg_of_elements(elements):
-    pass
+    avg = sum(elements) / len(elements)
+    return avg
+
 
 
 if __name__ == '__main__':

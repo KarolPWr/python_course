@@ -2,15 +2,24 @@ from typing import Dict, List
 
 
 def measure_lengths(words: List[str]) -> Dict[str, int]:
-    return dict()
+    # animal : length
+    lengths = dict()
+    for animal in words:
+        lengths[animal] = len(animal)
+    return lengths
 
 
 def filter_words_with_even_length(words_with_len: Dict[str, int]) -> Dict[str, int]:
-    return words_with_len
+    even_words = dict()
+    for k, v in words_with_len.items():
+        if v % 2 == 0:
+            even_words[k] = v
+    return even_words
 
 
 def filter_words_with_prefix(words_with_len: Dict[str, int], required_prefix: str) -> Dict[str, int]:
-    return words_with_len
+    prefix = {k: v for k, v in words_with_len.items() if k.startswith(required_prefix)}
+    return prefix
 
 
 if __name__ == '__main__':

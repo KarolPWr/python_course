@@ -41,22 +41,23 @@ if __name__ == '__main__':
     assert text[-8:16] == 'old'  # it works, but doesn't look good
     assert text[::-1] == '.god dlo na saw erehT'
 
-    reverse_level = 'Level'[:]  # Exercise
+    reverse_level = 'Level'[::-1]  # Exercise
     assert reverse_level == 'leveL'
 
     # replace '.' for '!' in the ned of the string
     with_bang = list(text)
-    # with_bang[] =   # Exercise
+    with_bang[-1] = '!'  # Exercise
     assert ''.join(with_bang) == "There was an old dog!"
 
     # replace part of array, so joined string will contain 'cat' instead of a 'dog'
     with_cat = list(text)
-    # with_cat[] = # Exercise
+    with_cat[-4:-1] = "cat"# Exercise
     assert ''.join(with_cat) == "There was an old cat."
 
     numbers = list(range(10))
-    even_numbers = numbers[:]  # Exercise
+    even_numbers = numbers[::2]  # Exercise
     assert even_numbers == [0, 2, 4, 6, 8]
 
-    even_numbers = numbers[:]  # Exercise
+    even_numbers = numbers[1::2]  # Exercise
+    print(even_numbers)
     assert even_numbers == [1, 3, 5, 7, 9]

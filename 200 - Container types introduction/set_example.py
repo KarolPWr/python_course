@@ -3,12 +3,19 @@ from typing import List, Tuple
 
 def detect_new_and_deleted_entries(prev_elements, current_elements) -> Tuple[List, List]:
     """Returns tuple of two lists: (<list of new items>, <list of deleted items>)"""
-    return list(), list()
+    prev_elements = set(prev_elements)
+    current_elements = set(current_elements)
+    added = list(current_elements - prev_elements)
+    deleted = list(prev_elements - current_elements)
+    return (added, deleted)
 
 
 def detect_non_modified_elements(prev_elements, current_elements) -> List:
     """Returns list of elements common for both `prev_elements` and `current_elements`"""
-    return list()
+    prev_elements = set(prev_elements)
+    current_elements = set(current_elements)
+    not_modified = list(prev_elements&current_elements)
+    return not_modified
 
 
 if __name__ == '__main__':
